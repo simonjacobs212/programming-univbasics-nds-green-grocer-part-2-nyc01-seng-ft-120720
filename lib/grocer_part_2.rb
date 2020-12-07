@@ -14,6 +14,7 @@ def apply_coupons(cart, coupons)
     if !item_found
       final_cart << product
     end
+    apply_coupon
   end
 end
 
