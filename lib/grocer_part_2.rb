@@ -2,7 +2,7 @@ require_relative './part_1_solution.rb'
 
 def apply_coupons(cart, coupons)
   cart.each_with_object([]) do |product, final_cart|
-    coupons.each do |coupon|
+    apply_coupon = coupons.each do |coupon|
       if product[:item] == coupon[:item] && product[:count] >= coupon[:num]
         product[:count] = product[:count] - coupon[:num]
         final_cart << product
