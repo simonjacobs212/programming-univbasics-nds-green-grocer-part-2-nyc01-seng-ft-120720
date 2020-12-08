@@ -1,12 +1,9 @@
+require 'pry'
+
 def find_item_by_name_in_collection(name, collection)
-  index = 0
-
-  collection.each do |grocery_item|
-    return grocery_item if grocery_item[:item] === name 
-    index += 1
+  collection.find do |product|
+    product[:item] == name
   end
-
-  nil
 end
 
 
@@ -31,4 +28,16 @@ def consolidate_cart(cart)
     index += 1
   end
   new_cart
+end
+
+def consolidate_cart(cart)
+  cart.each_with_object([]) do |product, final_cart|
+    new_item = find_item_by_name_in_collection(product[:item], final_cart)
+    if !new_item
+      product[:count] = 1
+      final_cart << product
+    else
+      new_item[:count] += 1
+    end
+  end
 end
